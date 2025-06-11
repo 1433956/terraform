@@ -7,7 +7,7 @@ variable "ami_id" {
 variable "instance_type" {
     type =string
     description = "type of instance"
-    default = "t3.micro"
+    default = "t3.small"
   
 }
 variable "tags" {
@@ -50,22 +50,10 @@ variable "tags" {
     default = {
         Name = "allow-all"
     }
+    
 }
-variable "instance" {
- 
-  default = {
-        mysql= "t3.small"
-        catalogue= "t3.micro"
-        frontend= "t3.micro"
-
-  }
+variable "enviornment" {
+   default = "prod"
   
-}
-variable "zone_id" {
-   default = "Z04391491005OGSNXNQQX"
-  
-}
-variable "domain_name" {
-  default = "devops73.site"
 }
 

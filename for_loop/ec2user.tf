@@ -1,12 +1,12 @@
 resource "aws_instance" "expese" {
-    for_each = var.instance
+    count =3
     ami = var.ami_id
-    instance_type = each.value
+    instance_type = var.instance_type
     vpc_security_group_ids =[ aws_security_group.allow_all.id ]
 
     tags = {
 
-        Name=each.key
+        Name=var.instance[count.index]
     }
 }
 resource "aws_security_group" "allow_all" {

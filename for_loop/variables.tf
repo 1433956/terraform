@@ -52,13 +52,7 @@ variable "tags" {
     }
 }
 variable "instance" {
- 
-  default = {
-        mysql= "t3.small"
-        catalogue= "t3.micro"
-        frontend= "t3.micro"
-
-  }
+   default = ["mysql","catalogue","frontend"]
   
 }
 variable "zone_id" {
