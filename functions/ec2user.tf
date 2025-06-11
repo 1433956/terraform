@@ -1,13 +1,19 @@
 resource "aws_instance" "expese" {
-    for_each=var.instance
+    count=length(var.instance)
     ami = var.ami_id
-    instance_type = each.value
+    instance_type = var.instance_type
     vpc_security_group_ids =[ aws_security_group.allow_all.id ]
 
-    tags = {
+    tags = merge(
+        var.common_tags,
+        {
+            Component=var.instance[count.index]
+            Name= var.instance[count.index]
+        }
 
-        Name=each.key
-    }
+        
+    )
+    
 }
 resource "aws_security_group" "allow_all" {
 
@@ -27,7 +33,14 @@ resource "aws_security_group" "allow_all" {
         cidr_blocks      = var.cidr_blocks
         ipv6_cidr_blocks = var.ipv6_cidr_blocks
     }
-    tags =var.sg_tags
+    tags =merge(
+
+        var.common_tags,
+        {
+            Name="allow_all"
+        }
+    )
+    #var.sg_tags
     
   
 }

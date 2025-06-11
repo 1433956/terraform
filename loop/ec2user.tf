@@ -1,12 +1,12 @@
 resource "aws_instance" "expese" {
-    count =3
+    count=3
     ami = var.ami_id
     instance_type = var.instance_type
     vpc_security_group_ids =[ aws_security_group.allow_all.id ]
 
     tags = {
 
-        Name=var.instance[count.index]
+        Name= var.instance[count.index]
     }
 }
 resource "aws_security_group" "allow_all" {

@@ -1,8 +1,8 @@
 resource "aws_route53_record" "www" {
-    count=3
+   for_each = aws_instance.expese
   zone_id = var.zone_id
-  name    = "${var.instance[count.index]}.${var.domain_name}"
+  name    = "${each.key}}.${var.domain_name}"
   type    = "A"
   ttl     = 1
-  records = [aws_instance.expese[count.index].private_ip]
+  records = [each.value.private_ip]
 }

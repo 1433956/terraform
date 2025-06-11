@@ -1,5 +1,5 @@
 resource "aws_route53_record" "www" {
-count = 3
+count = length(var.instance)
   zone_id = "Z04391491005OGSNXNQQX"
   name    = "${var.instance[count.index]}.${var.domain_name}"
   allow_overwrite= true

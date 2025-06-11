@@ -1,0 +1,19 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.98.0"
+    }
+  }
+  backend "s3" {
+    bucket = "devops73-remote-state"
+    key    = "remote-state-key"
+    region = "us-east-1"
+    encrypt = true
+    use_lockfile = true
+  }
+}
+
+provider "aws" {
+  # Configuration options
+}
